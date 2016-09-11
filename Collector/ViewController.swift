@@ -58,6 +58,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     return cell
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    let collection = collections[indexPath.row]
+    performSegue(withIdentifier: "collectionSegue", sender: collection)
+
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    let nextVC = segue.destination as! CollectionViewController
+    nextVC.collection = sender as? Collection
+    
+  }
 
 }
 

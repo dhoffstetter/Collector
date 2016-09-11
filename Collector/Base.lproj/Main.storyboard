@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="FzT-Qh-7DF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JLo-IG-Wxu">
                             <connections>
-                                <segue destination="slk-RW-bin" kind="show" id="SlA-fs-IXf"/>
+                                <segue destination="slk-RW-bin" kind="show" identifier="collectionSegue" id="SlA-fs-IXf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="width" constant="280" id="YOl-tl-SGh"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of your item..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcn-KG-FZ5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of your item..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcn-KG-FZ5">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BFz-4f-vCw"/>
                                 </constraints>
@@ -77,16 +77,25 @@
                                     <action selector="addTapped:" destination="slk-RW-bin" eventType="touchUpInside" id="uhO-jD-dfi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-T4-xEF">
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="addTapped:" destination="slk-RW-bin" eventType="touchUpInside" id="26h-ev-4QS"/>
+                                    <action selector="deleteTapped:" destination="slk-RW-bin" eventType="touchUpInside" id="V0A-Aj-M33"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xNg-Ba-cLj" firstAttribute="top" secondItem="nRt-nq-Rz7" secondAttribute="bottom" constant="20" id="AmK-8t-gsI"/>
                             <constraint firstItem="oc1-sT-39G" firstAttribute="centerY" secondItem="jwU-jG-9mK" secondAttribute="centerY" id="I9x-jD-93L"/>
                             <constraint firstItem="xNg-Ba-cLj" firstAttribute="centerX" secondItem="Hcn-KG-FZ5" secondAttribute="centerX" id="MNd-wp-5My"/>
+                            <constraint firstItem="D4a-T4-xEF" firstAttribute="centerX" secondItem="jwU-jG-9mK" secondAttribute="centerX" id="PBI-RD-ssN"/>
                             <constraint firstItem="Hcn-KG-FZ5" firstAttribute="centerX" secondItem="oc1-sT-39G" secondAttribute="centerX" id="SYb-U2-Ph6"/>
                             <constraint firstItem="Hcn-KG-FZ5" firstAttribute="width" secondItem="xNg-Ba-cLj" secondAttribute="width" id="XCf-Cl-DiG"/>
                             <constraint firstItem="Hcn-KG-FZ5" firstAttribute="top" secondItem="xNg-Ba-cLj" secondAttribute="bottom" constant="30" id="bja-tl-bsz"/>
                             <constraint firstItem="xNg-Ba-cLj" firstAttribute="centerX" secondItem="jwU-jG-9mK" secondAttribute="centerX" id="cam-u3-GdJ"/>
+                            <constraint firstItem="D4a-T4-xEF" firstAttribute="top" secondItem="oc1-sT-39G" secondAttribute="bottom" constant="25" id="d6I-7W-bnt"/>
                             <constraint firstItem="oc1-sT-39G" firstAttribute="top" secondItem="Hcn-KG-FZ5" secondAttribute="bottom" constant="24" id="sKB-Gk-ThJ"/>
                         </constraints>
                     </view>
@@ -105,7 +114,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addUpdateButton" destination="oc1-sT-39G" id="g1Z-rv-9NQ"/>
                         <outlet property="collectionImageView" destination="xNg-Ba-cLj" id="J9t-e4-Qei"/>
+                        <outlet property="deleteButton" destination="D4a-T4-xEF" id="IRu-0B-bn9"/>
                         <outlet property="titleTextField" destination="Hcn-KG-FZ5" id="cRC-Ob-ZDl"/>
                     </connections>
                 </viewController>

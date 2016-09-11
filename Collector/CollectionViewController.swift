@@ -12,13 +12,28 @@ class CollectionViewController: UIViewController, UIImagePickerControllerDelegat
 
   @IBOutlet weak var collectionImageView: UIImageView!
   @IBOutlet weak var titleTextField: UITextField!
+  @IBOutlet weak var addUpdateButton: UIButton!
+  @IBOutlet weak var deleteButton: UIButton!
   
   var imagePicker = UIImagePickerController()
+  var collection : Collection? = nil
   
     override func viewDidLoad() {
         super.viewDidLoad()
 
         imagePicker.delegate = self
+      
+      if collection != nil {
+        
+        collectionImageView.image = UIImage(data: collection!.image as! Data)
+        titleTextField.text = collection?.title
+        
+        addUpdateButton.setTitle("Update", for: .normal)
+        
+      } else {
+        
+        deleteButton.isHidden = true
+      }
       
     }
 
@@ -49,11 +64,20 @@ class CollectionViewController: UIViewController, UIImagePickerControllerDelegat
   
   @IBAction func addTapped(_ sender: AnyObject) {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    if collection != nil {
+      
+      collection!.title = titleTextField.text
+      collection!.image = UIImagePNGRepresentation(collectionImageView.image!)
+      
+    } else {
     
-    let collection = Collection(context: context)
-    collection.title = titleTextField.text
-    collection.image = UIImagePNGRepresentation(collectionImageView.image!)
+      let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+      
+      let collection = Collection(context: context)
+      collection.title = titleTextField.text
+      collection.image = UIImagePNGRepresentation(collectionImageView.image!)
+
+    }
     
     (UIApplication.shared.delegate as! AppDelegate).saveContext()
     
@@ -61,4 +85,37 @@ class CollectionViewController: UIViewController, UIImagePickerControllerDelegat
     
   }
   
+  @IBAction func deleteTapped(_ sender: AnyObject) {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    context.delete(collection!)
+    
+    (UIApplication.shared.delegate as! AppDelegate).saveContext()
+    
+    navigationController!.popViewController(animated: true)
+    
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
