@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We want access to your existing collection photos!!!</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We want to take pictures of your collection!!!</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
